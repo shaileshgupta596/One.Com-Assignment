@@ -1,0 +1,45 @@
+{% extends 'restaurent/base.html' %}
+
+{% block content %}
+    <div class="row d-flex justify-content-center mt-5">
+        <div class="col-md-6 shadow bordered">
+            <h5 class="mt-2" align="center">Products</h5>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Price($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.food_type }}</td>
+                        <td>{{ item.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center mt-5">
+        <div class="col-md-6 shadow bordered">
+            <h5 class="mt-2" align="center">Order</h5>
+            <form class="form-control" method="post" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Create Order</button>
+                    </div>
+                </div>
+            </form>
+            {% if msg %}
+            <p class="text-success"> {{ msg }}</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
